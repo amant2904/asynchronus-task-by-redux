@@ -8,32 +8,11 @@ const CartItem = (props) => {
   const dispatch = useDispatch();
 
   const increaseQuantity_handler = (props) => {
-    const index = cartItems.findIndex((item) => {
-      return item.id === props.id;
-    })
-    let newList = [];
-    for (let i in cartItems) {
-      newList.push({ ...cartItems[i] })
-    }
-    newList[index].quantity += 1;
-    dispatch(cartActions.updateInCart(newList));
+    dispatch(cartActions.addToCart(props));
   }
 
   const decreaseQuantity_handler = (props) => {
-    const index = cartItems.findIndex((item) => {
-      return item.id === props.id;
-    })
-    let newList = [];
-    for (let i in cartItems) {
-      newList.push({ ...cartItems[i] })
-    }
-    if (newList[index].quantity === 1) {
-      newList.splice(index, 1);
-    }
-    else {
-      newList[index].quantity -= 1;
-    }
-    dispatch(cartActions.reduceInCart(newList));
+    dispatch(cartActions.removeFromCart(props));
   }
 
   return (

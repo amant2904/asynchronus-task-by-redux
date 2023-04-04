@@ -9,22 +9,7 @@ const ProductItem = (props) => {
   const cartItems = useSelector(state => state.cart.cartItem);
 
   const addInCart_handler = (props) => {
-    // console.log(props);
-    const index = cartItems.findIndex((item) => {
-      return item.id === props.id;
-    })
-    if (index === -1) {
-      dispatch(cartActions.addInCart({ ...props, quantity: 1 }))
-    }
-    else {
-      let newList = [];
-      for (let i in cartItems) {
-        let obj = { ...cartItems[i] };
-        newList.push(obj);
-      }
-      newList[index].quantity += 1;
-      dispatch(cartActions.updateInCart(newList));
-    }
+    dispatch(cartActions.addToCart({ ...props, quantity: 1 }));
   }
 
   return (

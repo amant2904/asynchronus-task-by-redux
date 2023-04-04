@@ -1,0 +1,19 @@
+.notification{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    padding: 10px;
+    color: white;
+}
+.notification p{
+    margin: 0;
+}
+.green{
+    background-color: green;
+}
+.brown{
+    background-color: rgb(74, 98, 53);
+}
+.red{
+    background-color: red;
+}
