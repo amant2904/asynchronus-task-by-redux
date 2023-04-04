@@ -5,6 +5,7 @@ import Products from './components/Shop/Products';
 import { useSelector, useDispatch } from "react-redux";
 import Notification from './components/UI/Notification';
 import { uiActions } from './components/redux-store/ui-slice';
+import { cartActions } from './components/redux-store/cartSlice';
 
 let isInitial = true;
 
@@ -42,7 +43,15 @@ function App() {
       })()
     }
     isInitial = false;
-  }, [cart])
+  }, [cart, dispatch])
+
+  useEffect(() => {
+    (async () => {
+      let res = await fetch("https://moviesapp-react-1111-default-rtdb.firebaseio.com/items.json");
+      let data = await res.json();
+      dispatch(cartActions.firstUpdateCart({ item: data.cartItem, quantity: data.itemQuantity }))
+    })()
+  }, [dispatch])
 
   const showCart = useSelector(state => state.ui.showCart);
   return (

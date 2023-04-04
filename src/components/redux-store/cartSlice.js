@@ -32,6 +32,10 @@ const cartSlice = createSlice({
                 state.cartItem.splice(existingItem, 1);
             }
             state.itemQuantity -= 1;
+        },
+        firstUpdateCart(state, action) {
+            state.cartItem = action.payload.item;
+            state.itemQuantity = action.payload.quantity;
         }
     }
 })
